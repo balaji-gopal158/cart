@@ -1,0 +1,78 @@
+<div class="w3l_banner_nav_right">
+  <!-- login -->
+          <div class="w3_login">
+              <h3>Sign In & Sign Up</h3>
+              <div class="w3_login_module">
+                  <div class="module form-module">
+                    <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+                      <div class="tooltip">Click Me</div>
+                    </div>
+                    <div class="form">
+                      <h2>Login to your account</h2>
+                      <form [formGroup]="loginForm">
+                        <p class="alert alert-danger" *ngIf="msg">
+                          {{msg}}
+                     </p>
+                        <input type="text" name="Username" formControlName="Username" placeholder="Username">
+                        <p class="alert alert-danger" *ngIf="userNameCntrl.touched&&userNameCntrl.invalid">
+                              Pls Enter Username
+                        </p>
+                        <input type="password" name="Password"  formControlName="Password" placeholder="Password">
+                        <p class=" alert alert-danger" *ngIf="userpasswordCntrl.touched&&userpasswordCntrl.errors?.['required']">
+                          Pls Enter Password
+                         </p>
+                         <p class=" alert alert-danger" *ngIf="userpasswordCntrl.touched&&userpasswordCntrl.errors?.['minlength']">
+                          Pls Enter Minimum 4 Characters
+                         </p>
+                        <input type="submit" value="Login" (click)="doLogin()">
+                      </form>
+                  
+                    </div>
+                    <div class="form">
+                      <h2>Create an account</h2>
+                      <form  (submit)="doRegistration(f)" #f="ngForm">
+                        <p class="alert alert-success" *ngIf="msg">
+                             {{msg}}
+                        </p>
+                        <input type="text" name="Username" ngModel placeholder="Username" 
+                         (blur)="userNamecheck(uname.value)" #uname="ngModel" required>
+                         <p   class="alert alert-danger" *ngIf="uname.touched&&uname.invalid">
+                          Pls Enter Username
+                         </p>
+                         <p class="alert alert-danger" *ngIf="!isUsernameAvail&&uname.touched" >
+                                User Already Taken
+                         </p>
+                        <input type="password" name="Password" ngModel placeholder="Password" #pwd="ngModel" required minlength="6">
+                        <p  class="alert alert-danger" *ngIf="pwd.touched&&pwd.errors?.['required']">
+                          Please Enter the Password
+                        </p>
+                         <p class="alert alert-danger" *ngIf="(pwd.touched||pwd.dirty) && pwd.errors?.['minlength']">
+                              Minimum 6 Characters
+                         </p>
+                        <input type="email" name="Email" ngModel placeholder="Email Address" #eml="ngModel" required email>
+                          
+                        <p class="alert alert-danger" *ngIf="eml.touched && eml.errors?.['required']">
+                          Pls enter the Email
+                        </p>
+                        <p class="alert alert-danger" *ngIf="(eml.touched||eml.dirty) && eml.errors?.['email']">
+                          Pls enter the valid Email
+                        </p>
+                        <input type="text" name="Phone" ngModel placeholder="Phone Number" #phn="ngModel" minlength="10" required>
+                        <p class="alert alert-danger" *ngIf="phn.touched && phn.errors?.['required']">
+                            Pls Enter the Mobile Number
+                        </p>
+                        <p class="alert alert-danger" *ngIf="(phn.touched || phn.dirty )&& phn.errors?.['minlength']">
+                          Pls Enter the 10 Digit Mobile Number
+                      </p>
+                        
+                        <input type="submit" value="Register" [disabled]="!isUsernameAvail">
+                      </form>
+                    </div>
+                    <div class="cta"><a href="#">Forgot your password?</a></div>
+                  </div>
+              </div>
+              
+          </div>
+  <!-- //login -->
+          </div>
+          <div class="clearfix"></div>

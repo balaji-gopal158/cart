@@ -1,0 +1,33 @@
+<div class="w3l_banner_nav_right">
+    
+    <div class="w3_login">
+        <h3>Add Products</h3>
+        {{msg}}
+        <div class="w3_login_module">
+            <div class="module form-module">
+              <div class="toggle">
+            
+              </div>
+              <div class="form">
+                <h2>Add Products</h2>
+                <form (submit)="crateProducts(f)" #f="ngForm">
+                  <select name="catId" ngModel>
+                  <option value="">Pls Select Categories</option>
+                    <option *ngFor="let cat of categories" value="{{cat._id}}">
+                        {{cat.catName}}
+                    </option>
+                   
+                  </select>
+                  <br><br>
+                  <input type="text" name="Pdtname"ngModel placeholder="Productname"><br><br>
+                 
+                  <input type="number" name="pdtPrice" ngModel  placeholder="Productprice"><br><br>
+
+                  <input type="file" name="pdtImg" ngModel (change)="selectImg($event)"><br><br>
+
+                 <textarea name="pdtDesc" cols="30" ngModel rows="5"></textarea><br><br>
+                  
+                  <input type="submit" value="Add Products">
+                </form>
+            
+              </div>
